@@ -8,11 +8,14 @@
     "api": "json-server --watch api.json",
     "test": "npm run build && node example/Test.bs.js"
   },
-  "keywords": ["BuckleScript"],
+  "keywords": [
+    "BuckleScript"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^2.2.3"
+    "bs-platform": "^2.2.3",
+    "json-server": "^0.13.0"
   },
   "dependencies": {
     "bs-axios": "0.0.36",
