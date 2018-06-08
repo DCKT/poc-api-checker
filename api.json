@@ -1,0 +1,11 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": 22,
+      "description": "A welcoming introduction",
+      "price": 10.0,
+      "tags": ["smart", "awesome"]
+    }
+  ]
+}
