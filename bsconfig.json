@@ -9,7 +9,7 @@
       "subdirs": true
     },
     {
-      "dir": "example"
+      "dir": "examples"
     }
   ],
   "package-specs": {

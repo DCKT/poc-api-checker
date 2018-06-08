@@ -6,19 +6,18 @@
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
     "api": "json-server --watch api.json",
-    "test": "npm run build && node example/Test.bs.js"
+    "test": "npm run build && node examples/axios_test.bs.js"
   },
-  "keywords": [
-    "BuckleScript"
-  ],
+  "keywords": ["BuckleScript"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "bs-axios": "0.0.36",
+    "bs-fetch": "^0.3.0",
     "bs-platform": "^2.2.3",
     "json-server": "^0.13.0"
   },
   "dependencies": {
-    "bs-axios": "0.0.36",
     "bs-json": "^1.0.1"
   }
 }

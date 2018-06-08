@@ -16,13 +16,13 @@ let config = Axios.makeConfig(~baseURL="http://localhost:3000", ());
 let axiosInstance = Axios.Instance.create(config);
 
 ApiChecker.check(
-  "Book details",
-  Axios.Instance.get(axiosInstance, "/books/1"),
-  Decode.book,
+  ~label="Book details",
+  ~request=Axios.Instance.get(axiosInstance, "/books/1"),
+  ~decoder=Decode.book,
 );
 
 ApiChecker.check(
-  "Books root",
-  Axios.Instance.get(axiosInstance, "/books"),
-  Decode.books,
+  ~label="Books root",
+  ~request=Axios.Instance.get(axiosInstance, "/books"),
+  ~decoder=Decode.books,
 );
