@@ -2,8 +2,8 @@
   "books": [
     {
       "id": "1",
-      "title": 22,
-      "description": "A welcoming introduction",
+      "title": 1,
+      "description": "A sweet introduction",
       "price": 10.0,
       "tags": ["smart", "awesome"]
     }
