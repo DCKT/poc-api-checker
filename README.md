@@ -18,7 +18,7 @@ My case is : I want to make it sure that my payload types I wrote are matching w
 
 My favorite HTTP client is Axios, so let's make a request for a book :
 
-```
+```reason
 Axios.get("http://localhost:3000/books/1")
 |> Js.Promise.then_(response => {
   let book = response##data;
@@ -30,7 +30,7 @@ Axios.get("http://localhost:3000/books/1")
 
 This is not good, we are not safe with the data, the response type is too abstract and we don't get any feeback from the compiler, let's force this with a `book` type :
 
-```ocaml
+```reason
 type book = {
   id: string,
   title: string,
@@ -49,7 +49,7 @@ There is no way to prevent runtime error like this, the only thing you can do is
 With the help of [bs-json](https://github.com/glennsl/bs-json) package, we will take advantage of JSON encode/decode system.
 `bs-json` allow us to declare a function which will parse and check every field, so if the parsing fail it's because something change, let's create a decoder for our `book` type :
 
-```ocaml
+```reason
 module Decode = {
   let book: Js.Json.t => book =
     json =>
@@ -73,7 +73,7 @@ To avoid too much boilerplate, I create a small function that will handle the re
 * request : the Promise request
 * decoder : the `bs-json` decoder which will be run
 
-```ocaml
+```reason
 ApiChecker.check(
   ~label="Book details",
   ~request=Axios.get("http://localhost:3000/books/1"),
