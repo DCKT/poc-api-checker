@@ -5,7 +5,8 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
-    "api": "json-server --watch api.json"
+    "api": "json-server --watch api.json",
+    "test": "npm run build && node example/Test.bs.js"
   },
   "keywords": ["BuckleScript"],
   "author": "",

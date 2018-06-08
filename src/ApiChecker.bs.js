@@ -3,44 +3,13 @@
 
 var Json = require("bs-json/src/Json.js");
 var Curry = require("bs-platform/lib/js/curry.js");
-var Axios = require("axios");
-var Json_decode = require("bs-json/src/Json_decode.js");
-
-function book(json) {
-  return /* record */[
-          /* id */Json_decode.field("id", Json_decode.string, json),
-          /* title */Json_decode.field("title", Json_decode.string, json),
-          /* description */Json_decode.field("description", Json_decode.string, json),
-          /* price */Json_decode.field("price", Json_decode.$$float, json),
-          /* tags */Json_decode.field("tags", (function (param) {
-                  return Json_decode.array(Json_decode.string, param);
-                }), json)
-        ];
-}
-
-function books() {
-  return (function (param) {
-      return Json_decode.array(book, param);
-    });
-}
-
-var Decode = /* module */[
-  /* book */book,
-  /* books */books
-];
-
-var config = {
-  baseURL: "http://localhost:3000"
-};
-
-var axiosInstance = Axios.create(config);
 
 function checkStruct(data, decoder) {
-  Curry._1(decoder, Json.parseOrRaise(JSON.stringify(data)));
+  Curry._1(decoder, Json.parseOrRaise(Json.stringify(data)));
   return /* () */0;
 }
 
-function handler(name, promise, decoder) {
+function check(name, promise, decoder) {
   promise.then((function (response) {
             checkStruct(response.data, decoder);
             return Promise.resolve(/* () */0);
@@ -52,16 +21,6 @@ function handler(name, promise, decoder) {
   return /* () */0;
 }
 
-handler("Book details", axiosInstance.get("/books/1"), book);
-
-handler("Books root", axiosInstance.get("/books"), books);
-
-var data = "\n  {\n    \"id\": \"id-1\",\n    \"title\": \"Greetings.\",\n    \"description\": \"A welcoming introduction\",\n    \"price\": 10.0,\n    \"tags\": [\"smart\", \"awesome\"]\n  }\n";
-
-exports.Decode = Decode;
-exports.data = data;
-exports.config = config;
-exports.axiosInstance = axiosInstance;
 exports.checkStruct = checkStruct;
-exports.handler = handler;
-/* axiosInstance Not a pure module */
+exports.check = check;
+/* No side effect */
